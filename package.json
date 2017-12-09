@@ -1,0 +1,16 @@
+{
+  "name": "sass-studies",
+  "version": "1.0.0",
+  "description": "Studies around SASS & SCSS",
+  "scripts": {
+    "watch": "onchange 'src/scss/**/*.scss' -- npm run compile",
+    "compile": "node-sass src/scss/main.scss src/css/main.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Joao Araujo",
+  "license": "MIT",
+  "devDependencies": {
+    "node-sass": "^4.7.2",
+    "onchange": "^3.3.0"
+  }
+}

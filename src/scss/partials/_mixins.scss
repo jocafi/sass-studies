@@ -1,0 +1,80 @@
+
+
+// .JA. how to create mixins that can be reused through another styling SCSS files
+@mixin warning {
+  background-color: orange;
+  color: #fff;
+}
+
+// .JA. you can pass multiple arguments of the same type using 3 dots as shown below:
+@mixin box-shadow($shadows...) {
+  box-shadow: $shadows;
+  -moz-box-shadow: $shadows;
+  -webkit-box-shadow: $shadows;
+}
+
+// .JA. Use @content in order to replace this placeholder by a content when using @include. 
+// The example below shows the @content only for IE 6:
+// See https://css-tricks.com/how-to-create-an-ie-only-stylesheet/
+@mixin apply-to-ie-6 {
+  * html {
+    @content;
+  }
+}
+
+@mixin large-text {
+  font: {
+    size: $header-font-size;
+    weight: bold;
+  }
+}
+
+// .JA. you can create parameters with or without default values.
+@mixin rounded($radius: 6px) {
+  border-radius: $radius;
+}
+
+// .JA. you can @include one mixin in another mixin
+@mixin box($radius: 6px, $border: 1px solid #000) {
+  @include rounded($radius);
+  border: $border;
+}
+
+@mixin fancy-links {
+  a {
+    font-style: italic;
+    text-decoration: none;
+  }
+}
+
+// .JA. you can pass a value of a variable inside an string using the INTERPOLATION syntax: #{$variable_name}
+@mixin google-font($font) {
+  $font: unquote($font);
+  @import url(https://fonts.googleapis.com/css?family=#{$font})
+}
+
+// === MEDIA QUERIES ===
+// .JA. Example of use of MEDIA QUERIES to use with mobile devices and offer RESPONSIVE web pages
+@mixin tiny-screens() {
+  @media only screen and (max-width: 320px) {
+    @content;
+  }
+}
+
+@mixin small-screens() {
+  @media only screen and (max-width: 480px) {
+    @content;
+  }
+}
+
+@mixin medium-screens() {
+  @media only screen and (max-width: 640px) {
+    @content;
+  }
+}
+
+@mixin medium-large-screens() {
+  @media only screen and (max-width: 960px) {
+    @content;
+  }
+}

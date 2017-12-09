@@ -1,0 +1,87 @@
+// .JA. Use @import "filename" to import a PARTIAL SCSS filename called _filename.scss
+@import "partials/variables";
+@import "partials/mixins";
+
+// .JA. use @include <MIXIN_NAME> to include the code of a mixin on this place
+@include fancy-links;
+
+@include google-font("Alegreya+Sans");
+@include google-font("Titillium+Web");
+@include google-font("Tangerine");
+
+// .JA. the mixin below uses @content making it much more READABLE than usual hacks to apply to IE 6
+@include apply-to-ie-6 {
+  body {
+    font-size: 125%;
+  }
+}
+
+body {
+  font-family: $text-font;
+  color: $text-color;
+}
+
+h1, h2, h3, h4 {
+  font-family: $headline-font;
+}
+
+h2 {
+  @include large-text;
+}
+
+p {
+  font-family: $text-font;
+}
+
+a {
+  color: $link-color;
+}
+
+.warning-button {
+  @include warning;
+  padding: 8px 12px;
+}
+
+#header {
+  // .JA. you can pass arguments to the mixin in the rigth order or in any order using the parameter name 
+  // @include box(12px, 1px solid #fff);
+  @include box($border: 1px solid #fff, $radius: 12px);
+  @include box-shadow(2px 0px 4px #999, 1px 1px 6px $secondary-color);
+  height: $header-height;
+  background-color: $theme-color;
+
+  #main-menu {
+    
+    li {
+      display: inline;
+    }
+    a {
+      color: $menu-item-color;
+    }
+  }
+  
+  #logo {
+
+  }
+}
+
+#main {
+  width: $content-width;
+  @include medium-large-screens {
+    width: auto;
+    max-width: $content-width;
+  }
+  margin-left: auto;
+  margin-right: auto;
+
+  #content {
+  }
+
+  #sidebar {
+  }
+}
+
+#footer {
+  height: $footer-height;
+  background-color: $ternary-color;
+}
